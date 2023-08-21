@@ -5,9 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-# from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support import expected_conditions as EC
 import telegram_send_msg as tg
 from selenium.webdriver.common.by import By
@@ -21,7 +20,6 @@ from pyvirtualdisplay import Display
 import time
 import random
 import requests
-service = Service()
 options = webdriver.ChromeOptions()
 options.add_argument("----start-maximized")
 options.add_argument("--window-size=1440,789")
@@ -80,7 +78,7 @@ while True:
                 print('ua', ua)
                 print(f"user-agent={ua}")
                 options.add_argument(f"user-agent={ua[0]}")
-                driver = webdriver.Chrome(service=service, options=options)
+                driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
                 driver.implicitly_wait(30)
                 driver.get('chrome://settings/')
                 driver.execute_script('chrome.settingsPrivate.setDefaultZoom(0.50);') #keep # at begining to remove zoom settings
